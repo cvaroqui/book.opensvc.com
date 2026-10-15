@@ -328,6 +328,10 @@ The name of the backend network to use for drbd traffic.
 
 Set this keyword if some node names are resolved to NATed addresses.
 
+The address of a node is the first of the subnet the network assigned it, so
+the network is a `routed_bridge`. A network giving the nodes no subnet of
+their own, as a `lan`, is refused: set `addr` instead.
+
 
 ## Keyword `no_preempt_abort`
 
@@ -864,6 +868,7 @@ If states are omitted, `up,stdby up` is used as the default expected states.
 
 	required:    false
 	scopable:    false
+	stop first:  a change is refused while the resource is up
 	rbac:        This driver group requires the root grant.
 
 **Example:**

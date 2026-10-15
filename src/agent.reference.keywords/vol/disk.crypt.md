@@ -201,6 +201,7 @@ The agent does not interpret the value.
 
 	required:    true
 	scopable:    true
+	stop first:  a change is refused while the resource is up
 	rbac:        This driver group requires the root grant.
 
 **Example:**
@@ -209,7 +210,14 @@ The agent does not interpret the value.
 
 **Description:**
 
-The fullpath of the underlying block device.
+The block device to encrypt, written as the other devices of a service are:
+
+* `/dev/sdb` is a device of the node.
+* `data` is the device a vol of the namespace exposes, as the block volume a
+  pool served.
+* `disk#1` is the device a resource of the service exposes, as a md or a
+  logical volume. The resource must expose one device, and start before
+  this one.
 
 
 ## Keyword `disable`
@@ -306,6 +314,7 @@ A resource with `monitor=true` will trigger the `monitor_action`
 
 	required:    false
 	scopable:    true
+	stop first:  a change is refused while the resource is up
 	rbac:        This driver group requires the root grant.
 
 **Default:**

@@ -223,6 +223,7 @@ delete them using the `raw` kernel driver.
 
 	required:    true
 	scopable:    true
+	stop first:  a change is refused while the resource is up
 	convert:     list
 	rbac:        This driver group requires the root grant.
 
@@ -232,8 +233,14 @@ delete them using the `raw` kernel driver.
 
 **Description:**
 
-A whitespace-separated list of device paths or `<src>[:<dst>]` device paths
-mappings.
+A whitespace-separated list of device paths, patterns of device paths, or
+`<src>:<dst>` device paths mappings.
+
+A source can also be written as the other devices of a service are: `data`
+is the device a vol of the namespace exposes, and `disk#1` the devices a
+resource of the service exposes, which must start before this one. As the
+source of a mapping, as `disk#1:/dev/oracle/data`, the resource must expose
+one device.
 
 
 ## Keyword `disable`

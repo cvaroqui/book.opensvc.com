@@ -242,7 +242,14 @@ The agent does not interpret the value.
 
 **Description:**
 
-The md member devices to use with the `mdadm create` command.
+The md member devices to use with the `mdadm create` command, written as the
+other devices of a service are:
+
+* `/dev/sdb` is a device of the node.
+* `data-a` is the device a vol of the namespace exposes, as `data-a data-b`
+  to mirror two block volumes served by two pools.
+* `disk#1` is the devices a resource of the service exposes, which must start
+  before this one.
 
 
 ## Keyword `disable`
@@ -325,6 +332,7 @@ A resource with `monitor=true` will trigger the `monitor_action`
 
 	required:    false
 	scopable:    true
+	stop first:  a change is refused while the resource is up
 	rbac:        This driver group requires the root grant.
 
 **Default:**
@@ -1152,6 +1160,7 @@ If states are omitted, `up,stdby up` is used as the default expected states.
 	required:    false
 	scopable:    true
 	recorded:    written when what it names is made, and reset when the object is cloned
+	stop first:  a change is refused while the resource is up
 	rbac:        This driver group requires the root grant.
 
 **Example:**

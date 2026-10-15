@@ -286,6 +286,7 @@ A resource with `monitor=true` will trigger the `monitor_action`
 	required:    false
 	scopable:    true
 	aliases:     container_rid
+	stop first:  a change is refused while the resource is up
 	rbac:        The host network namespace requires the root grant.
 
 **Example:**
@@ -301,7 +302,9 @@ The resource id of the container to plumb the ip into.
 
 	required:    false
 	scopable:    true
+	stop first:  a change is refused while the resource is up
 	default:     default
+	rbac:        A network named by a path requires the root grant.
 
 **Example:**
 
@@ -983,7 +986,7 @@ Some tags can influence the driver behaviour:
 
 	required:    false
 	scopable:    false
-	rbac:        Requires the root grant, except for a cni address, and for a netns address om draws from a cluster network.
+	rbac:        Requires the root grant, except for a cni address, for a netns address om draws from a cluster network, and for a host address om draws from a lan network, on the interface and with the netmask the network says.
 
 **Description:**
 

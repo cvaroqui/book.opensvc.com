@@ -13,6 +13,7 @@
 
 - comment
 - dev
+- dns
 - mask_per_node
 - network
 - public
@@ -43,6 +44,29 @@ The agent does not interpret the value.
 **Description:**
 
 The network bridge device name. If not set the name will be `obr_<network name>`. Use this keyword if you need the network to use an already existing bridge.
+
+
+## Keyword `dns`
+
+	required:    false
+	scopable:    true
+	convert:     list
+
+**Example:**
+
+	dns=2001:db8::53 192.0.2.53
+
+**Description:**
+
+The nameservers reachable from the network, which the containers whose
+network namespace holds an address of it, from an ip.netns or an ip.cni, are
+given in place of the nameservers of the cluster: a segment the cluster
+nameservers are not reachable from, as a public one, needs its own. The `dns`
+keyword of a container adds its own nameservers after them.
+
+Unset, the containers are given the nameservers of the cluster. A container
+with addresses on several networks naming nameservers is given the ones of
+each, in the order of its ip resources.
 
 
 ## Keyword `mask_per_node`
@@ -92,11 +116,24 @@ Set to true if the network ip range is public and we must not configure masquera
 
 	required:    false
 	scopable:    false
-	candidates:  bridge, routed_bridge
+	candidates:  bridge, routed_bridge, lan
 	default:     bridge
 
 **Description:**
 
 The type of network.
+
+* `bridge`: a subnet on a bridge of each node, the same on every node, its
+  traffic masqueraded out of the node.
+* `routed_bridge`: a subnet cut into one range per node, routed between the
+  nodes.
+* `lan`: ranges of a segment the nodes share, the addresses of which an
+  object takes along when it moves to another node, as the floating address
+  of a failover service.
+
+The traffic the nodes forward for the `bridge` and `routed_bridge` networks
+is accepted in the om nft table, and, on a node running docker, whose
+forward chain drops what docker did not accept, in a chain the docker
+`DOCKER-USER` chain jumps to.
 
 

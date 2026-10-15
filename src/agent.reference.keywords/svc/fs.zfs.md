@@ -227,6 +227,7 @@ The whitespace-separated list of
 
 	required:    false
 	scopable:    true
+	stop first:  a change is refused while the resource is up
 	default:     none
 	rbac:        Requires the root grant.
 
@@ -237,6 +238,11 @@ The whitespace-separated list of
 **Description:**
 
 The block device file or filesystem image file hosting the filesystem to mount.
+
+The device is written as the other devices of a service are: `/dev/sdb` is a
+device of the node, `data` the device a vol of the namespace exposes, and
+`disk#1` the device a resource of the service exposes, which must expose one
+device.
 
 A different device can be set up on different nodes using the `dev@<nodename>`
 scoping syntax.
@@ -357,6 +363,7 @@ directories.
 		/etc/ssl/front.pem from ./sec/d key fullpem mode 0640 user 1000 group 1001 required
 		/etc/ssl/front.chain from ./sec/d key certificate_chain required
 		/etc/profile.d/ from ./sec/d key etc/profile.d/*
+		/etc/ssl/certs/*.pem from ./sec/web-* key fullpem signal HUP:container#haproxy
 		/init/nfs from ./cfg/{name} key init/nfs mode 0755 source https://raw.githubusercontent.com/opensvc/opensvc_templates/refs/heads/main/nfs/script
 		/init/backup from ./cfg/{name} key init/backup mode 0755 source /tmp/scripts/backup.sh
 		/init/config.sh from ./cfg/{name} key init/config.sh mode 0755 source https://example.com/templates/config.sh template
@@ -387,15 +394,31 @@ Where:
 * `<obj_relpath>` (e.g. `./sec/d`)
   * is the path of the datastore to install keys from, relative to the installing object namespace.
 
+* a `*` in the name of `<obj_path|obj_relpath>` (e.g. `./sec/haproxy-*`)
+  * installs the keys of each sec or cfg of the namespace whose name matches, the `*` matching one character or
+    more. A datastore of another namespace is installed from when it shares its keys with the installing object.
+  * the `<path>` holds a `*` too, replaced for each datastore by the part of its name the `*` matched: so the
+    files of the datastores are told apart.
+    e.g. `/certs/*.pem from ./sec/haproxy-* key fullpem` installs the `fullpem` key of `./sec/haproxy-www.example.com`
+    as `<head>/certs/www.example.com.pem`, and `/tenants/*/ from ./cfg/tenant-* key conf/*` installs the `conf/*` keys
+    of `./cfg/tenant-a` in `<head>/tenants/a/`.
+  * a datastore created is installed from at its first key added, and the files of a datastore deleted are removed.
+  * `required` fails the install when no datastore matches.
+
 * `key <key>`
   * `<key>` is the key name or a globbing pattern from `<obj_path|obj_relpath>`.
+  * the file a key installed is removed when the key is, at the next install, and so are the files of a line
+    taken away from `install`: a file the line did not install, as one written there by hand, stays.
   * if not specified, defaults to the `<path>` with the leading `/` stripped.
     e.g. `fs#1.install = /a/b from ./sec/sec1` will install `<fs#1 head>/a/b` from the `./sec/sec1` key named `a/b`.
 
-* `<mode>`, `<user>`, `<group>` default values are defined by the `mode`, `user` and `group` resource keyword.
+* `<mode>`, `<user>`, `<group>` default values are defined by the `perm`, `user` and `group` resource keywords,
+  and the `<mode>` of a directory by the `dirperm` resource keyword. Without `perm`, a file from a sec is installed
+  with mode `0600`, and a file from a cfg with mode `0644`.
 
 * `<sig>:<rid>` (e.g. `HUP:container#haproxy`)
-  * `<sig>` is the signal to send to the target resource `<rid>` processes when the file content is modified.
+  * `<sig>` is the signal to send to the target resource `<rid>` processes when the file content is modified,
+    or the file removed with its key.
 
 * `<uri>`
   * is the source URI or local file path to seed the datastore key with during provision if the key doesn't already exist.
@@ -406,9 +429,38 @@ Where:
   * stop installing items if this item install failed.
 
 * `source <uri>`
-  * seed the datastore key with the content of `<uri>`.
-  * if `template` is also set, treat the `<uri>` content as a go template, and execute using the [env] section keys as the dataset.
-    e.g. {{.foo}} is replaced by the evaluated value of `env.foo`.
+  * seed the datastore key with the content of `<uri>`, as it is written: a template is stored as a template.
+
+* `template`
+  * the key content is a go template, rendered on each node at each install into the installed file. The key
+    keeps the template, so a file says what the node it is installed on knows when it is installed.
+  * the data is the [env] section: `{{.foo}}` is replaced by the evaluated value of `env.foo`.
+  * the functions are:
+    * `ref "<reference>"`: the value of an om reference, written without its braces, evaluated for this node.
+      e.g. `{{ref "nodename"}}`, `{{ref "clusternodes"}}`, `{{ref "volume#1.mnt"}}`.
+    * `split <string>`: the words of a string, as a list a reference returns.
+      e.g. `{{range split (ref "clusternodes")}}{{.}} {{end}}`.
+    * `key "<obj_path|obj_relpath>" "<key>"`: the content of a datastore key, the datastore sharing its keys with
+      the installing object namespace. The installed file mode is the line's, so a file rendering a sec key
+      wants a `mode` as tight as the key's.
+    * `network "<name>"`: the network `<name>`, with the fields `Name`, `Type`, `Network`, `Peers` and
+      `ReverseZones`. A routed_bridge network lists the other nodes in `Peers`, as this node reaches them, with
+      the fields `Nodename`, `Local` and `Remote` (the addresses of this node and the peer the network joins),
+      `Subnet`, and `Tunnel` (the tunnel device, empty when the network is routed to the peer). Other networks
+      list none. `ReverseZones` are the reverse zones of the addresses the network hands out, which the cluster
+      nameservers answer for, none when `cluster.dns_reverse` is false: a resolver forwards them to the cluster
+      nameservers, e.g. `{{range networks}}{{range .ReverseZones}}{{.}}=10.0.0.1,{{end}}{{end}}`.
+    * `networks`: the networks of the node, each as `network` returns it.
+    * `tunnels`: the peers the networks of the node reach by a tunnel, each tunnel once, as networks joining the
+      same two addresses share one. e.g. `{{range tunnels}}{{.Nodename}} {{.Local}} {{.Remote}}{{end}}`.
+  * the file is compared to what the template renders at each install, so the `signal` follows a change of
+    what the template reads too, at the next install.
+  * a change of a key the `key` function read at the last render installs the file again, on each node, as a
+    change of the template key does: a file rendered from a sec follows the sec.
+
+An install writing or removing files, whatever runs it, a start, a provision, a task or a change of a key,
+publishes a `FileInstalled` event, and none when it finds them up to date. A task with `on = FileInstalled,rid=<rid>` has
+what reads them read them again, e.g. a host task with `container` running `swanctl --load-all`.
 
 
 ## Keyword `mkfs_opt`
@@ -427,6 +479,7 @@ Options to pass to the `mkfs` command called by the `provision` action.
 
 	required:    true
 	scopable:    true
+	stop first:  a change is refused while the resource is up
 	rbac:        Requires the root grant.
 
 **Example:**
@@ -509,6 +562,9 @@ If `perm` is not set,
 The permissions to apply to installed files, in octal notation.
 
 Also used to compute a default value for `dirperm`.
+
+When not set, a file from a sec is installed with mode `0600`, and a file from
+a cfg with mode `0644`.
 
 
 ## Keyword `pg_blkio_weight`

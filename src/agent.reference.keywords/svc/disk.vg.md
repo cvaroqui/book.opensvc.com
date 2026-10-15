@@ -259,6 +259,7 @@ A resource with `monitor=true` will trigger the `monitor_action`
 	required:    true
 	scopable:    true
 	aliases:     vgname
+	stop first:  a change is refused while the resource is up
 	rbac:        This driver group requires the root grant.
 
 **Example:**
@@ -812,7 +813,13 @@ If states are omitted, `up,stdby up` is used as the default expected states.
 
 **Description:**
 
-The list of paths to the physical volumes of the volume group.
+The physical volumes of the volume group, written as the other devices of a
+service are:
+
+* `/dev/sdb` is a device of the node.
+* `data` is the device a vol of the namespace exposes.
+* `disk#1` is the devices a resource of the service exposes, which must start
+  before this one.
 
 
 ## Keyword `restart`

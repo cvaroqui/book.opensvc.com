@@ -5,14 +5,14 @@
 	[share#1]
 	type = nfs
 	opts = *(ro)
-	path = /srv/{fqdn}/share
+	path = volume#1:/
 
 **Minimal setup command:**
 
 	om test/svc/foo set \
 		--kw="type=nfs" \
 		--kw="opts=*(ro)" \
-		--kw="path=/srv/{fqdn}/share"
+		--kw="path=volume#1:/"
 
 **Supported keywords:**
 
@@ -178,7 +178,6 @@ Errors interrupt the action.
 
 	required:    false
 	scopable:    false
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -197,7 +196,6 @@ The agent does not interpret the value.
 	required:    false
 	scopable:    true
 	convert:     bool
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -224,7 +222,6 @@ These actions immediately return success.
 	required:    false
 	scopable:    false
 	convert:     bool
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -236,7 +233,6 @@ Set to `true` to ignore this resource in the nodes context and consider it in th
 	required:    false
 	scopable:    true
 	convert:     bool
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -256,7 +252,6 @@ A resource with `monitor=true` will trigger the `monitor_action`
 	required:    false
 	scopable:    true
 	convert:     bool
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -275,7 +270,8 @@ Dump filesystems are a typical use case for optional=true.
 
 	required:    true
 	scopable:    true
-	rbac:        This driver group requires the root grant.
+	stop first:  a change is refused while the resource is up
+	rbac:        An export option other than rw, ro, sync, async, wdelay, no_wdelay, subtree_check, no_subtree_check, secure, hide, root_squash, all_squash, no_all_squash, sec, anonuid and anongid, or an anonuid or anongid of 0, requires the root grant.
 
 **Example:**
 
@@ -283,33 +279,40 @@ Dump filesystems are a typical use case for optional=true.
 
 **Description:**
 
-The NFS share export options.
+The export options of each client, as they would be set in `/etc/exports`, a
+`client(opt,...)` entry per client: `10.0.0.0/24(rw,sync) client1(ro)`.
 
-On Linux, as they would be set in `/etc/exports`
-
-On Solaris, as they would be passed to the `share` command.
 
 
 ## Keyword `path`
 
 	required:    true
 	scopable:    true
-	rbac:        This driver group requires the root grant.
+	stop first:  a change is refused while the resource is up
+	rbac:        A path other than the mount point of a volume, written <vol name> or volume#<n>:/, requires the root grant.
 
 **Example:**
 
-	path=/srv/{fqdn}/share
+	path=volume#1:/
 
 **Description:**
 
-The path of the directory to share.
+The directory to export, written as the other paths of a service are:
+
+* `/srv/data` is a path of the node.
+* `<vol name>/<path>` is a path in a vol of the namespace, as `data` for the
+  whole vol `data`.
+* `volume#1:/<path>` is a path under the mount point of the resource
+  `volume#1`, and `fs#1:/<path>` of the filesystem `fs#1`.
+
+A path in a volume or a filesystem never leads above its mount point.
+
 
 
 ## Keyword `pg_blkio_weight`
 
 	required:    false
 	scopable:    true
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -330,7 +333,6 @@ written stays written, whether om wrote it or something else did.
 
 	required:    false
 	scopable:    true
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -362,7 +364,6 @@ written stays written, whether om wrote it or something else did.
 
 	required:    false
 	scopable:    true
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -396,7 +397,6 @@ written stays written, whether om wrote it or something else did.
 	required:    false
 	scopable:    true
 	convert:     size
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -421,7 +421,6 @@ written stays written, whether om wrote it or something else did.
 	required:    false
 	scopable:    true
 	depends:     create_pg=true
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -443,7 +442,6 @@ written stays written, whether om wrote it or something else did.
 	required:    false
 	scopable:    true
 	convert:     size
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -474,7 +472,6 @@ written stays written, whether om wrote it or something else did.
 	required:    false
 	scopable:    true
 	convert:     size
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -495,7 +492,6 @@ written stays written, whether om wrote it or something else did.
 
 	required:    false
 	scopable:    true
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -525,7 +521,6 @@ it there is warned about, and ignored.
 
 	required:    false
 	scopable:    true
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -544,7 +539,6 @@ it there is warned about, and ignored.
 
 	required:    false
 	scopable:    true
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -565,7 +559,6 @@ written stays written, whether om wrote it or something else did.
 
 	required:    false
 	scopable:    true
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -589,7 +582,6 @@ written stays written, whether om wrote it or something else did.
 	required:    false
 	scopable:    true
 	convert:     size
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -721,7 +713,6 @@ Errors do not interrupt the action.
 	scopable:    false
 	default:     true
 	convert:     bool
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -740,7 +731,6 @@ destroy data.
 
 	required:    false
 	scopable:    false
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -762,7 +752,6 @@ If states are omitted, `up,stdby up` is used as the default expected states.
 	scopable:    true
 	default:     0
 	convert:     int
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -793,7 +782,6 @@ increase chances of a restart success.
 	scopable:    true
 	default:     500ms
 	convert:     duration
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -805,7 +793,6 @@ The minimum delay between two restart tentatives on the resource.
 	required:    false
 	scopable:    true
 	convert:     bool
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -843,7 +830,6 @@ the flex primary gets `--leader` commands.
 	required:    false
 	scopable:    true
 	convert:     bool
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -864,7 +850,6 @@ remote filesystem must be mounted to not overflow the underlying filesystem.
 
 	required:    false
 	scopable:    false
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -885,7 +870,6 @@ If states are omitted, `up,stdby up` is used as the default expected states.
 	required:    false
 	scopable:    true
 	convert:     duration
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -900,7 +884,6 @@ a monitor action (reboot or crash the node) if the resource is monitored.
 
 	required:    false
 	scopable:    false
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 
@@ -920,7 +903,6 @@ If states are omitted, `up,stdby up` is used as the default expected states.
 
 	required:    false
 	scopable:    true
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -940,7 +922,6 @@ process group.
 	required:    false
 	scopable:    true
 	convert:     set
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -963,7 +944,7 @@ Some tags can influence the driver behaviour:
 
 	required:    false
 	scopable:    false
-	rbac:        This driver group requires the root grant.
+	rbac:        Requires the root grant, except for the values nfs.
 
 **Description:**
 
@@ -976,7 +957,6 @@ The resource driver name.
 	scopable:    false
 	default:     true
 	convert:     bool
-	rbac:        This driver group requires the root grant.
 
 **Description:**
 
@@ -994,7 +974,6 @@ destroy data.
 
 	required:    false
 	scopable:    false
-	rbac:        This driver group requires the root grant.
 
 **Example:**
 

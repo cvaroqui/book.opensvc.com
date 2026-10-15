@@ -483,6 +483,7 @@ Set the container hostname. If not set, a unique id is used.
 	scopable:    true
 	aliases:     run_image
 	default:     ghcr.io/opensvc/pause
+	rbac:        An image starting with a '-' requires the root grant.
 
 **Description:**
 
@@ -607,6 +608,8 @@ A resource with `monitor=true` will trigger the `monitor_action`
 
 	required:    false
 	scopable:    true
+	stop first:  a change is refused while the resource is up
+	rbac:        A container name of the user's choosing requires the root grant: the default name is the object's own.
 
 **Default:**
 
@@ -1317,6 +1320,7 @@ It has no effect without rootless_user.
 	required:    false
 	scopable:    true
 	since:       v3.0.0-rc42
+	stop first:  a change is refused while the resource is up
 
 **Example:**
 
@@ -1767,6 +1771,11 @@ The source is one of:
   the service, a volume or a filesystem, under its mount point.
 * `web-cfg/etc/nginx`, a directory or a file in the vol `web-cfg` of the
   namespace, under its mount point.
+* `tmpfs`, a memory filesystem of the container's own, which the engine
+  mounts at the start and discards at the stop: `tmpfs:/var/lib/app` or
+  `tmpfs:/var/lib/app:size=16m,mode=0750`. The `<mount options>` are the ones
+  of a tmpfs. The memory it holds counts in the one of the container, which
+  its memory limit bounds.
 
 When the source is a directory of the node, the default `<mount option>` is `rw`.
 

@@ -275,6 +275,7 @@ A resource with `monitor=true` will trigger the `monitor_action`
 
 	required:    false
 	scopable:    true
+	stop first:  a change is refused while the resource is up
 	rbac:        Requires the root grant.
 
 **Description:**
@@ -958,7 +959,7 @@ The DNS record name to point the alias to.
 
 	required:    false
 	scopable:    false
-	rbac:        Requires the root grant, except for a cni address, and for a netns address om draws from a cluster network.
+	rbac:        Requires the root grant, except for a cni address, for a netns address om draws from a cluster network, and for a host address om draws from a lan network, on the interface and with the netmask the network says.
 
 **Description:**
 
@@ -1007,6 +1008,7 @@ If states are omitted, `up,stdby up` is used as the default expected states.
 
 	required:    false
 	scopable:    true
+	stop first:  a change is refused while the resource is up
 	rbac:        Requires the root grant.
 
 **Description:**
@@ -1019,6 +1021,7 @@ If not set, the start tries to detect uuid to update, or create new one, the sto
 
 	required:    true
 	scopable:    true
+	stop first:  a change is refused while the resource is up
 	rbac:        Requires the root grant.
 
 **Description:**
