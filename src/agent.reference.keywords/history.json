@@ -64491,6 +64491,21 @@
    "since": "v3.0.0-rc49",
    "until": null
   },
+  "svc/sync.btrfs.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "btrfs"
+    ]
+   },
+   "since": "v3.0.0-rc53",
+   "until": null
+  },
   "svc/sync.btrfs.max_delay": {
    "changes": {},
    "properties": {
@@ -64899,6 +64914,21 @@
    "since": "v3.0.0-rc49",
    "until": null
   },
+  "svc/sync.btrfssnap.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "btrfssnap"
+    ]
+   },
+   "since": "v3.0.0-rc53",
+   "until": null
+  },
   "svc/sync.btrfssnap.max_delay": {
    "changes": {},
    "properties": {
@@ -65293,6 +65323,21 @@
     ]
    },
    "since": "v3.0.0-rc36",
+   "until": null
+  },
+  "svc/sync.rsync.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "rsync"
+    ]
+   },
+   "since": "v3.0.0-rc53",
    "until": null
   },
   "svc/sync.rsync.max_delay": {
@@ -65766,6 +65811,21 @@
    "since": "v3.0.0-rc36",
    "until": null
   },
+  "svc/sync.symsnapvx.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "symsnapvx"
+    ]
+   },
+   "since": "v3.0.0-rc53",
+   "until": null
+  },
   "svc/sync.symsnapvx.max_delay": {
    "changes": {},
    "properties": {
@@ -66158,6 +66218,21 @@
     ]
    },
    "since": "v3.0.0-rc36",
+   "until": null
+  },
+  "svc/sync.symsrdfs.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "symsrdfs"
+    ]
+   },
+   "since": "v3.0.0-rc53",
    "until": null
   },
   "svc/sync.symsrdfs.max_delay": {
@@ -66624,6 +66699,21 @@
    "since": "v3.0.0-rc36",
    "until": null
   },
+  "svc/sync.zfs.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "zfs"
+    ]
+   },
+   "since": "v3.0.0-rc53",
+   "until": null
+  },
   "svc/sync.zfs.max_delay": {
    "changes": {},
    "properties": {
@@ -67070,6 +67160,21 @@
     ]
    },
    "since": "v3.0.0-rc36",
+   "until": null
+  },
+  "svc/sync.zfssnap.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "zfssnap"
+    ]
+   },
+   "since": "v3.0.0-rc53",
    "until": null
   },
   "svc/sync.zfssnap.max_delay": {
@@ -67551,13 +67656,18 @@
    "until": null
   },
   "svc/task.acme.log": {
-   "changes": {},
+   "changes": {
+    "v3.0.0-rc53": [
+     "default: true -> false",
+     "description rewritten"
+    ]
+   },
    "properties": {
     "converter": "bool",
-    "default": "true",
+    "default": "false",
     "inherit": "leaf2head",
     "scopable": true,
-    "textSum": "c653e4c272ec2ea3",
+    "textSum": "407fb5c5868b7024",
     "types": [
      "acme"
     ]
@@ -68349,13 +68459,18 @@
    "until": null
   },
   "svc/task.docker.log": {
-   "changes": {},
+   "changes": {
+    "v3.0.0-rc53": [
+     "default: true -> false",
+     "description rewritten"
+    ]
+   },
    "properties": {
     "converter": "bool",
-    "default": "true",
+    "default": "false",
     "inherit": "leaf2head",
     "scopable": true,
-    "textSum": "c653e4c272ec2ea3",
+    "textSum": "407fb5c5868b7024",
     "types": [
      "docker"
     ]
@@ -69401,13 +69516,18 @@
    "until": null
   },
   "svc/task.host.log": {
-   "changes": {},
+   "changes": {
+    "v3.0.0-rc53": [
+     "default: true -> false",
+     "description rewritten"
+    ]
+   },
    "properties": {
     "converter": "bool",
-    "default": "true",
+    "default": "false",
     "inherit": "leaf2head",
     "scopable": true,
-    "textSum": "c653e4c272ec2ea3",
+    "textSum": "407fb5c5868b7024",
     "types": [
      "host"
     ]
@@ -70239,13 +70359,18 @@
    "until": null
   },
   "svc/task.oci.log": {
-   "changes": {},
+   "changes": {
+    "v3.0.0-rc53": [
+     "default: true -> false",
+     "description rewritten"
+    ]
+   },
    "properties": {
     "converter": "bool",
-    "default": "true",
+    "default": "false",
     "inherit": "leaf2head",
     "scopable": true,
-    "textSum": "c653e4c272ec2ea3",
+    "textSum": "407fb5c5868b7024",
     "types": [
      "oci"
     ]
@@ -71339,13 +71464,18 @@
    "until": null
   },
   "svc/task.podman.log": {
-   "changes": {},
+   "changes": {
+    "v3.0.0-rc53": [
+     "default: true -> false",
+     "description rewritten"
+    ]
+   },
    "properties": {
     "converter": "bool",
-    "default": "true",
+    "default": "false",
     "inherit": "leaf2head",
     "scopable": true,
-    "textSum": "c653e4c272ec2ea3",
+    "textSum": "407fb5c5868b7024",
     "types": [
      "podman"
     ]
@@ -120124,6 +120254,21 @@
    "since": "v3.0.0-rc49",
    "until": null
   },
+  "vol/sync.btrfs.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "btrfs"
+    ]
+   },
+   "since": "v3.0.0-rc53",
+   "until": null
+  },
   "vol/sync.btrfs.max_delay": {
    "changes": {},
    "properties": {
@@ -120532,6 +120677,21 @@
    "since": "v3.0.0-rc49",
    "until": null
   },
+  "vol/sync.btrfssnap.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "btrfssnap"
+    ]
+   },
+   "since": "v3.0.0-rc53",
+   "until": null
+  },
   "vol/sync.btrfssnap.max_delay": {
    "changes": {},
    "properties": {
@@ -120926,6 +121086,21 @@
     ]
    },
    "since": "v3.0.0-rc36",
+   "until": null
+  },
+  "vol/sync.rsync.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "rsync"
+    ]
+   },
+   "since": "v3.0.0-rc53",
    "until": null
   },
   "vol/sync.rsync.max_delay": {
@@ -121399,6 +121574,21 @@
    "since": "v3.0.0-rc36",
    "until": null
   },
+  "vol/sync.symsnapvx.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "symsnapvx"
+    ]
+   },
+   "since": "v3.0.0-rc53",
+   "until": null
+  },
   "vol/sync.symsnapvx.max_delay": {
    "changes": {},
    "properties": {
@@ -121791,6 +121981,21 @@
     ]
    },
    "since": "v3.0.0-rc36",
+   "until": null
+  },
+  "vol/sync.symsrdfs.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "symsrdfs"
+    ]
+   },
+   "since": "v3.0.0-rc53",
    "until": null
   },
   "vol/sync.symsrdfs.max_delay": {
@@ -122257,6 +122462,21 @@
    "since": "v3.0.0-rc36",
    "until": null
   },
+  "vol/sync.zfs.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "zfs"
+    ]
+   },
+   "since": "v3.0.0-rc53",
+   "until": null
+  },
   "vol/sync.zfs.max_delay": {
    "changes": {},
    "properties": {
@@ -122703,6 +122923,21 @@
     ]
    },
    "since": "v3.0.0-rc36",
+   "until": null
+  },
+  "vol/sync.zfssnap.log": {
+   "changes": {},
+   "properties": {
+    "converter": "bool",
+    "default": "false",
+    "inherit": "leaf2head",
+    "scopable": true,
+    "textSum": "60a62b3058e4e2b0",
+    "types": [
+     "zfssnap"
+    ]
+   },
+   "since": "v3.0.0-rc53",
    "until": null
   },
   "vol/sync.zfssnap.max_delay": {
@@ -123382,13 +123617,18 @@
    "until": null
   },
   "vol/task.docker.log": {
-   "changes": {},
+   "changes": {
+    "v3.0.0-rc53": [
+     "default: true -> false",
+     "description rewritten"
+    ]
+   },
    "properties": {
     "converter": "bool",
-    "default": "true",
+    "default": "false",
     "inherit": "leaf2head",
     "scopable": true,
-    "textSum": "c653e4c272ec2ea3",
+    "textSum": "407fb5c5868b7024",
     "types": [
      "docker"
     ]
@@ -124434,13 +124674,18 @@
    "until": null
   },
   "vol/task.host.log": {
-   "changes": {},
+   "changes": {
+    "v3.0.0-rc53": [
+     "default: true -> false",
+     "description rewritten"
+    ]
+   },
    "properties": {
     "converter": "bool",
-    "default": "true",
+    "default": "false",
     "inherit": "leaf2head",
     "scopable": true,
-    "textSum": "c653e4c272ec2ea3",
+    "textSum": "407fb5c5868b7024",
     "types": [
      "host"
     ]
@@ -125272,13 +125517,18 @@
    "until": null
   },
   "vol/task.oci.log": {
-   "changes": {},
+   "changes": {
+    "v3.0.0-rc53": [
+     "default: true -> false",
+     "description rewritten"
+    ]
+   },
    "properties": {
     "converter": "bool",
-    "default": "true",
+    "default": "false",
     "inherit": "leaf2head",
     "scopable": true,
-    "textSum": "c653e4c272ec2ea3",
+    "textSum": "407fb5c5868b7024",
     "types": [
      "oci"
     ]
@@ -126372,13 +126622,18 @@
    "until": null
   },
   "vol/task.podman.log": {
-   "changes": {},
+   "changes": {
+    "v3.0.0-rc53": [
+     "default: true -> false",
+     "description rewritten"
+    ]
+   },
    "properties": {
     "converter": "bool",
-    "default": "true",
+    "default": "false",
     "inherit": "leaf2head",
     "scopable": true,
-    "textSum": "c653e4c272ec2ea3",
+    "textSum": "407fb5c5868b7024",
     "types": [
      "podman"
     ]
@@ -127771,6 +128026,7 @@
   "v3.0.0-rc46",
   "v3.0.0-rc49",
   "v3.0.0-rc50",
-  "v3.0.0-rc52"
+  "v3.0.0-rc52",
+  "v3.0.0-rc53"
  ]
 }
