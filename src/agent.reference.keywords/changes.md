@@ -1,7 +1,21 @@
 # Keyword changes
 
-What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc61.
+What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc62.
 
+
+## v3.0.0-rc62
+
+
+### Changed
+
+- `cluster/collector.speaker_grace_period`
+  - since: v3.0.0-rc60 -> v3.0.0-rc61
+- `cluster/node.load_pool_interval`
+  - since: v3.0.0-rc60 -> v3.0.0-rc61
+- `node/collector.speaker_grace_period`
+  - since: v3.0.0-rc60 -> v3.0.0-rc61
+- `node/node.load_pool_interval`
+  - since: v3.0.0-rc60 -> v3.0.0-rc61
 
 ## v3.0.0-rc61
 
