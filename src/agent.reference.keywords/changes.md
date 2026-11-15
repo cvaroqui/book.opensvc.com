@@ -1,9 +1,13 @@
 # Keyword changes
 
-What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc64.
+What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc66.
 
 The 20 most recent releases are listed. The whole timeline is in `history.json`, beside this page.
 
+
+## v3.0.0-rc66
+
+No keyword changed.
 
 ## v3.0.0-rc64
 
@@ -7962,59 +7966,4 @@ No keyword changed.
 - `vol/fs.sgcp_nfs.endpoint`
   - description rewritten
 - `vol/ip.sgcp_dnsalias.endpoint`
-  - description rewritten
-
-## v3.0.0-rc37
-
-
-### Added
-
-- `cluster/array.pure.private_key`
-- `node/array.pure.private_key`
-
-### Changed
-
-- `cluster/array.pure.secret`
-  - deprecated: unset -> 3.0.0
-  - replacedBy: unset -> private_key
-  - required: true -> unset
-- `node/array.pure.secret`
-  - deprecated: unset -> 3.0.0
-  - replacedBy: unset -> private_key
-  - required: true -> unset
-- `svc/DEFAULT.pg_blkio_weight`
-  - description rewritten
-- `svc/DEFAULT.pg_cpu_quota`
-  - description rewritten
-- `svc/DEFAULT.pg_cpu_shares`
-  - description rewritten
-- `svc/DEFAULT.pg_cpus`
-  - description rewritten
-- `svc/DEFAULT.pg_mem_limit`
-  - description rewritten
-- `svc/DEFAULT.pg_mem_oom_control`
-  - description rewritten
-- `svc/DEFAULT.pg_mem_swappiness`
-  - description rewritten
-- `svc/DEFAULT.pg_mems`
-  - description rewritten
-- `svc/DEFAULT.pg_vmem_limit`
-  - description rewritten
-- `vol/DEFAULT.pg_blkio_weight`
-  - description rewritten
-- `vol/DEFAULT.pg_cpu_quota`
-  - description rewritten
-- `vol/DEFAULT.pg_cpu_shares`
-  - description rewritten
-- `vol/DEFAULT.pg_cpus`
-  - description rewritten
-- `vol/DEFAULT.pg_mem_limit`
-  - description rewritten
-- `vol/DEFAULT.pg_mem_oom_control`
-  - description rewritten
-- `vol/DEFAULT.pg_mem_swappiness`
-  - description rewritten
-- `vol/DEFAULT.pg_mems`
-  - description rewritten
-- `vol/DEFAULT.pg_vmem_limit`
   - description rewritten
