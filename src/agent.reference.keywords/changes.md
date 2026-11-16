@@ -1,9 +1,13 @@
 # Keyword changes
 
-What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc66.
+What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc67.
 
 The 20 most recent releases are listed. The whole timeline is in `history.json`, beside this page.
 
+
+## v3.0.0-rc67
+
+No keyword changed.
 
 ## v3.0.0-rc66
 
@@ -7949,21 +7953,3 @@ No keyword changed.
   - inherit: leaf2head -> leaf
 - `vol/volume..size`
   - inherit: leaf2head -> leaf
-
-## v3.0.0-rc38
-
-
-### Changed
-
-- `svc/disk.sgcp_nfs_cg.endpoint`
-  - description rewritten
-- `svc/fs.sgcp_nfs.endpoint`
-  - description rewritten
-- `svc/ip.sgcp_dnsalias.endpoint`
-  - description rewritten
-- `vol/disk.sgcp_nfs_cg.endpoint`
-  - description rewritten
-- `vol/fs.sgcp_nfs.endpoint`
-  - description rewritten
-- `vol/ip.sgcp_dnsalias.endpoint`
-  - description rewritten
