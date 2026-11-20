@@ -1,9 +1,38 @@
 # Keyword changes
 
-What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc67.
+What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc68.
 
 The 20 most recent releases are listed. The whole timeline is in `history.json`, beside this page.
 
+
+## v3.0.0-rc68
+
+
+### Added
+
+- `svc/container.docker.apparmor_profile`
+- `svc/container.oci.apparmor_profile`
+- `svc/container.podman.apparmor_profile`
+- `svc/ip.cni.publish`
+- `svc/ip.docker.publish`
+- `svc/ip.netns.publish`
+
+### Changed
+
+- `svc/container.docker.netns`
+  - description rewritten
+- `svc/container.oci.netns`
+  - description rewritten
+- `svc/container.podman.netns`
+  - description rewritten
+- `svc/ip.cni.expose`
+  - description rewritten
+- `svc/ip.docker.expose`
+  - description rewritten
+- `svc/ip.host.expose`
+  - description rewritten
+- `svc/ip.netns.expose`
+  - description rewritten
 
 ## v3.0.0-rc67
 
@@ -7888,68 +7917,3 @@ No keyword changed.
 
 - `svc/DEFAULT.orchestrate`
   - description rewritten
-
-## v3.0.0-rc39
-
-
-### Added
-
-- `cluster/pool.directory.quota`
-- `node/pool.directory.quota`
-- `svc/fs.directory.project_id`
-- `svc/fs.directory.size`
-- `vol/fs.directory.project_id`
-- `vol/fs.directory.size`
-
-### Changed
-
-- `cfg/DEFAULT.id`
-  - recorded: unset -> true
-- `sec/DEFAULT.id`
-  - recorded: unset -> true
-- `svc/DEFAULT.id`
-  - recorded: unset -> true
-- `svc/disk.disk.size`
-  - inherit: leaf2head -> leaf
-- `svc/disk.loop.size`
-  - converter: unset -> size
-  - inherit: leaf2head -> leaf
-- `svc/disk.lv.size`
-  - arithmetic: unset -> true
-  - inherit: leaf2head -> leaf
-  - description rewritten
-- `svc/disk.md.uuid`
-  - recorded: unset -> true
-- `svc/disk.rados.size`
-  - converter: unset -> size
-  - inherit: leaf2head -> leaf
-- `svc/disk.zvol.size`
-  - inherit: leaf2head -> leaf
-- `svc/fs.zfs.size`
-  - inherit: leaf2head -> leaf
-- `svc/volume..size`
-  - inherit: leaf2head -> leaf
-- `usr/DEFAULT.id`
-  - recorded: unset -> true
-- `vol/DEFAULT.id`
-  - recorded: unset -> true
-- `vol/disk.disk.size`
-  - inherit: leaf2head -> leaf
-- `vol/disk.loop.size`
-  - converter: unset -> size
-  - inherit: leaf2head -> leaf
-- `vol/disk.lv.size`
-  - arithmetic: unset -> true
-  - inherit: leaf2head -> leaf
-  - description rewritten
-- `vol/disk.md.uuid`
-  - recorded: unset -> true
-- `vol/disk.rados.size`
-  - converter: unset -> size
-  - inherit: leaf2head -> leaf
-- `vol/disk.zvol.size`
-  - inherit: leaf2head -> leaf
-- `vol/fs.zfs.size`
-  - inherit: leaf2head -> leaf
-- `vol/volume..size`
-  - inherit: leaf2head -> leaf
