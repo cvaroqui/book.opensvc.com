@@ -1,9 +1,13 @@
 # Keyword changes
 
-What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc68.
+What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc70.
 
 The 20 most recent releases are listed. The whole timeline is in `history.json`, beside this page.
 
+
+## v3.0.0-rc70
+
+No keyword changed.
 
 ## v3.0.0-rc68
 
@@ -7908,12 +7912,4 @@ No keyword changed.
 - `svc/task.oci.userns`
   - description rewritten
 - `vol/task.oci.userns`
-  - description rewritten
-
-## v3.0.0-rc40
-
-
-### Changed
-
-- `svc/DEFAULT.orchestrate`
   - description rewritten
