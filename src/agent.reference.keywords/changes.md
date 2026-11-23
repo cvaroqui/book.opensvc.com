@@ -1,9 +1,298 @@
 # Keyword changes
 
-What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc70.
+What each release of the agent added, removed and changed in its keywords. The reference itself documents v3.0.0-rc71.
 
 The 20 most recent releases are listed. The whole timeline is in `history.json`, beside this page.
 
+
+## v3.0.0-rc71
+
+
+### Added
+
+- `cluster/network.l2_bridge.ageing_time`
+- `cluster/network.l2_bridge.hairpin`
+- `cluster/network.l2_bridge.mac`
+- `cluster/network.l2_bridge.mcast_snooping`
+- `cluster/network.l2_bridge.mtu`
+- `cluster/network.l2_bridge.ports`
+- `cluster/network.l2_bridge.stp`
+- `cluster/network.l2_bridge.vlan`
+- `cluster/network.l2_bridge.vxlan_addr`
+- `cluster/network.l2_bridge.vxlan_port`
+- `cluster/network.l2_bridge.vxlan_vni`
+- `node/network.l2_bridge.ageing_time`
+- `node/network.l2_bridge.hairpin`
+- `node/network.l2_bridge.mac`
+- `node/network.l2_bridge.mcast_snooping`
+- `node/network.l2_bridge.mtu`
+- `node/network.l2_bridge.ports`
+- `node/network.l2_bridge.stp`
+- `node/network.l2_bridge.vlan`
+- `node/network.l2_bridge.vxlan_addr`
+- `node/network.l2_bridge.vxlan_port`
+- `node/network.l2_bridge.vxlan_vni`
+- `svc/app.forking.capability_bounding_set`
+- `svc/app.forking.no_new_privileges`
+- `svc/app.forking.systemd_properties`
+- `svc/app.simple.capability_bounding_set`
+- `svc/app.simple.no_new_privileges`
+- `svc/app.simple.systemd_properties`
+- `svc/sync.btrfs.delay_snap`
+- `svc/sync.btrfssnap.delay_snap`
+- `svc/sync.rsync.delay_snap`
+- `svc/sync.zfs.delay_snap`
+- `svc/sync.zfssnap.delay_snap`
+- `svc/task.host.capability_bounding_set`
+- `svc/task.host.no_new_privileges`
+- `svc/task.host.systemd_properties`
+- `vol/sync.btrfs.delay_snap`
+- `vol/sync.btrfssnap.delay_snap`
+- `vol/sync.rsync.delay_snap`
+- `vol/sync.zfs.delay_snap`
+- `vol/sync.zfssnap.delay_snap`
+- `vol/task.host.capability_bounding_set`
+- `vol/task.host.no_new_privileges`
+- `vol/task.host.systemd_properties`
+
+### Changed
+
+- `cluster/network.bridge.dev`
+  - types: bridge, routed_bridge -> bridge, l2_bridge, routed_bridge
+- `cluster/network.routed_bridge.gateway`
+  - description rewritten
+- `cluster/network.type`
+  - candidates: bridge, lan, routed_bridge -> bridge, l2_bridge, lan, routed_bridge
+  - description rewritten
+- `node/network.bridge.dev`
+  - types: bridge, routed_bridge -> bridge, l2_bridge, routed_bridge
+- `node/network.routed_bridge.gateway`
+  - description rewritten
+- `node/network.type`
+  - candidates: bridge, lan, routed_bridge -> bridge, l2_bridge, lan, routed_bridge
+  - description rewritten
+- `svc/fs.9pfs.install`
+  - description rewritten
+- `svc/fs.afs.install`
+  - description rewritten
+- `svc/fs.bfs.install`
+  - description rewritten
+- `svc/fs.bind.install`
+  - description rewritten
+- `svc/fs.btrfs.install`
+  - description rewritten
+- `svc/fs.cephfs.install`
+  - description rewritten
+- `svc/fs.cifs.install`
+  - description rewritten
+- `svc/fs.directory.install`
+  - description rewritten
+- `svc/fs.ext2.install`
+  - description rewritten
+- `svc/fs.ext3.install`
+  - description rewritten
+- `svc/fs.ext4.install`
+  - description rewritten
+- `svc/fs.f2fs.install`
+  - description rewritten
+- `svc/fs.gfs.install`
+  - description rewritten
+- `svc/fs.gfs2.install`
+  - description rewritten
+- `svc/fs.glusterfs.install`
+  - description rewritten
+- `svc/fs.gpfs.install`
+  - description rewritten
+- `svc/fs.hfs.install`
+  - description rewritten
+- `svc/fs.hfsplus.install`
+  - description rewritten
+- `svc/fs.hpfs.install`
+  - description rewritten
+- `svc/fs.jffs.install`
+  - description rewritten
+- `svc/fs.jffs2.install`
+  - description rewritten
+- `svc/fs.jfs.install`
+  - description rewritten
+- `svc/fs.jfs2.install`
+  - description rewritten
+- `svc/fs.lofs.install`
+  - description rewritten
+- `svc/fs.logfs.install`
+  - description rewritten
+- `svc/fs.minix.install`
+  - description rewritten
+- `svc/fs.msdos.install`
+  - description rewritten
+- `svc/fs.ncpfs.install`
+  - description rewritten
+- `svc/fs.nfs.install`
+  - description rewritten
+- `svc/fs.nfs4.install`
+  - description rewritten
+- `svc/fs.nilfs.install`
+  - description rewritten
+- `svc/fs.none.install`
+  - description rewritten
+- `svc/fs.ntfs.install`
+  - description rewritten
+- `svc/fs.ocfs.install`
+  - description rewritten
+- `svc/fs.ocfs2.install`
+  - description rewritten
+- `svc/fs.qnx4.install`
+  - description rewritten
+- `svc/fs.reiserfs.install`
+  - description rewritten
+- `svc/fs.reiserfs4.install`
+  - description rewritten
+- `svc/fs.rpc_pipefs.install`
+  - description rewritten
+- `svc/fs.sgcp_nfs.install`
+  - description rewritten
+- `svc/fs.smbfs.install`
+  - description rewritten
+- `svc/fs.tmpfs.install`
+  - description rewritten
+- `svc/fs.tux3.install`
+  - description rewritten
+- `svc/fs.ufs.install`
+  - description rewritten
+- `svc/fs.ufs2.install`
+  - description rewritten
+- `svc/fs.umsdos.install`
+  - description rewritten
+- `svc/fs.vfat.install`
+  - description rewritten
+- `svc/fs.vxfs.install`
+  - description rewritten
+- `svc/fs.xfs.install`
+  - description rewritten
+- `svc/fs.xia.install`
+  - description rewritten
+- `svc/fs.zfs.install`
+  - description rewritten
+- `svc/sync.btrfssnap.subvol`
+  - description rewritten
+- `svc/sync.rsync.snap`
+  - description rewritten
+- `svc/sync.zfssnap.dataset`
+  - description rewritten
+- `svc/volume..install`
+  - description rewritten
+- `usr/DEFAULT.grant`
+  - description rewritten
+- `vol/fs.9pfs.install`
+  - description rewritten
+- `vol/fs.afs.install`
+  - description rewritten
+- `vol/fs.bfs.install`
+  - description rewritten
+- `vol/fs.bind.install`
+  - description rewritten
+- `vol/fs.btrfs.install`
+  - description rewritten
+- `vol/fs.cephfs.install`
+  - description rewritten
+- `vol/fs.cifs.install`
+  - description rewritten
+- `vol/fs.directory.install`
+  - description rewritten
+- `vol/fs.ext2.install`
+  - description rewritten
+- `vol/fs.ext3.install`
+  - description rewritten
+- `vol/fs.ext4.install`
+  - description rewritten
+- `vol/fs.f2fs.install`
+  - description rewritten
+- `vol/fs.gfs.install`
+  - description rewritten
+- `vol/fs.gfs2.install`
+  - description rewritten
+- `vol/fs.glusterfs.install`
+  - description rewritten
+- `vol/fs.gpfs.install`
+  - description rewritten
+- `vol/fs.hfs.install`
+  - description rewritten
+- `vol/fs.hfsplus.install`
+  - description rewritten
+- `vol/fs.hpfs.install`
+  - description rewritten
+- `vol/fs.jffs.install`
+  - description rewritten
+- `vol/fs.jffs2.install`
+  - description rewritten
+- `vol/fs.jfs.install`
+  - description rewritten
+- `vol/fs.jfs2.install`
+  - description rewritten
+- `vol/fs.lofs.install`
+  - description rewritten
+- `vol/fs.logfs.install`
+  - description rewritten
+- `vol/fs.minix.install`
+  - description rewritten
+- `vol/fs.msdos.install`
+  - description rewritten
+- `vol/fs.ncpfs.install`
+  - description rewritten
+- `vol/fs.nfs.install`
+  - description rewritten
+- `vol/fs.nfs4.install`
+  - description rewritten
+- `vol/fs.nilfs.install`
+  - description rewritten
+- `vol/fs.none.install`
+  - description rewritten
+- `vol/fs.ntfs.install`
+  - description rewritten
+- `vol/fs.ocfs.install`
+  - description rewritten
+- `vol/fs.ocfs2.install`
+  - description rewritten
+- `vol/fs.qnx4.install`
+  - description rewritten
+- `vol/fs.reiserfs.install`
+  - description rewritten
+- `vol/fs.reiserfs4.install`
+  - description rewritten
+- `vol/fs.rpc_pipefs.install`
+  - description rewritten
+- `vol/fs.sgcp_nfs.install`
+  - description rewritten
+- `vol/fs.smbfs.install`
+  - description rewritten
+- `vol/fs.tmpfs.install`
+  - description rewritten
+- `vol/fs.tux3.install`
+  - description rewritten
+- `vol/fs.ufs.install`
+  - description rewritten
+- `vol/fs.ufs2.install`
+  - description rewritten
+- `vol/fs.umsdos.install`
+  - description rewritten
+- `vol/fs.vfat.install`
+  - description rewritten
+- `vol/fs.vxfs.install`
+  - description rewritten
+- `vol/fs.xfs.install`
+  - description rewritten
+- `vol/fs.xia.install`
+  - description rewritten
+- `vol/fs.zfs.install`
+  - description rewritten
+- `vol/sync.btrfssnap.subvol`
+  - description rewritten
+- `vol/sync.rsync.snap`
+  - description rewritten
+- `vol/sync.zfssnap.dataset`
+  - description rewritten
+- `vol/volume..install`
+  - description rewritten
 
 ## v3.0.0-rc70
 
@@ -7900,16 +8189,4 @@ No keyword changed.
 - `vol/task.podman.max_parallel`
   - description rewritten
 - `vol/volume..install`
-  - description rewritten
-
-## v3.0.0-rc41
-
-
-### Changed
-
-- `svc/container.oci.userns`
-  - description rewritten
-- `svc/task.oci.userns`
-  - description rewritten
-- `vol/task.oci.userns`
   - description rewritten
